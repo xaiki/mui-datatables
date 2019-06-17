@@ -276,7 +276,8 @@ class TableToolbar extends React.Component {
                 className={classes.iconButton}
                 onClick={onRowsDelete}
                 aria-label={options.textLabels.selectedRows.deleteAria}>
-                <DeleteIcon className={classes.deleteIcon} />
+                <DeleteIcon color="secondary" className={classes.deleteIcon} />
+                {selectedRows.data.length}
               </IconButton>
             </Tooltip>
           )}
