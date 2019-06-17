@@ -12,6 +12,7 @@ import DownloadIcon from '@material-ui/icons/CloudDownload';
 import PrintIcon from '@material-ui/icons/Print';
 import ViewColumnIcon from '@material-ui/icons/ViewColumn';
 import FilterIcon from '@material-ui/icons/FilterList';
+import DeleteIcon from '@material-ui/icons/Delete';
 import ReactToPrint from 'react-to-print';
 import styled from '../styled';
 import { createCSVDownload } from '../utils';
@@ -165,6 +166,8 @@ class TableToolbar extends React.Component {
       toggleViewColumn,
       title,
       tableRef,
+      selectedRows,
+      onRowsDelete,
     } = this.props;
 
     const { search, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
@@ -267,6 +270,17 @@ class TableToolbar extends React.Component {
               }
             />
           )}
+          {selectedRows && selectedRows.data && selectedRows.data.length && (
+            <Tooltip title={options.textLabels.selectedRows.delete}>
+              <IconButton
+                className={classes.iconButton}
+                onClick={onRowsDelete}
+                aria-label={options.textLabels.selectedRows.deleteAria}>
+                <DeleteIcon className={classes.deleteIcon} />
+              </IconButton>
+            </Tooltip>
+          )}
+
           {options.customToolbar && options.customToolbar()}
         </div>
       </Toolbar>
