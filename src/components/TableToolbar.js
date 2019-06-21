@@ -172,6 +172,7 @@ class TableToolbar extends React.Component {
 
     const { search, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
     const { showSearch, searchText } = this.state;
+    const hasRows = selectedRows && selectedRows.data && selectedRows.data.length;
 
     return (
       <Toolbar className={classes.root} role={'toolbar'} aria-label={'Table Toolbar'}>
@@ -270,7 +271,7 @@ class TableToolbar extends React.Component {
               }
             />
           )}
-          {selectedRows && selectedRows.data && selectedRows.data.length && (
+          {options.delete && hasRows && (
             <Tooltip title={options.textLabels.selectedRows.delete}>
               <IconButton
                 className={classes.iconButton}

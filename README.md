@@ -162,6 +162,7 @@ The component accepts the following props:
 |**`sortFilterList`**|boolean|true|Enable/disable alphanumeric sorting of filter lists
 |**`sort`**|boolean|true|Enable/disable sort on all columns
 |**`filter`**|boolean|true|Show/hide filter icon from toolbar
+|**`delete`**|boolean|true|Show/hide delete icon from selectToolbar
 |**`search`**|boolean|true|Show/hide search icon from toolbar
 |**`searchText`**|string||Initial search text
 |**`print`**|boolean|true|Show/hide print	 icon from toolbar
