@@ -944,8 +944,9 @@ class MUIDataTable extends React.Component {
               : false;
 
           let selectedRows = displayData.reduce((arr, d, i) => {
-            const selected = isRowSelectable ? isRowSelectable(displayData[i].dataIndex) : true;
-            selected && arr.push({ index: i, dataIndex: displayData[i].dataIndex });
+            const dataIndex = displayData[i].dataIndex;
+            const selected = isRowSelectable ? isRowSelectable(dataIndex) : true;
+            selected && arr.push({ index: i, dataIndex });
             return arr;
           }, []);
 
@@ -1011,8 +1012,11 @@ class MUIDataTable extends React.Component {
       );
     } else if (type === 'custom') {
       const { displayData } = this.state;
+      const dataIndex = displayData[row].dataIndex;
 
-      const data = value.map(row => ({ index: row, dataIndex: displayData[row].dataIndex }));
+      console.error('custom select', displayData, displayData[row], displayData[row].dataIndex, value);
+
+      const data = value.map(row => ({ index: row, dataIndex }));
       const lookup = buildMap(data);
 
       this.setState(
@@ -1050,7 +1054,8 @@ class MUIDataTable extends React.Component {
       const row = sortedData[i];
       tableData.push(dataSrc[row.position]);
       if (row.rowSelected) {
-        selectedRows.push({ index: i, dataIndex: dataSrc[row.position].index });
+        const dataIndex = dataSrc[row.position].index;
+        selectedRows.push({ index: i, dataIndex });
       }
     }
 
