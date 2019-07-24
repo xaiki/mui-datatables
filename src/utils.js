@@ -17,12 +17,16 @@ function getCollatorComparator() {
 
 function sortCompare(order) {
   return (a, b) => {
-    if (a.data === null) a.data = '';
-    if (b.data === null) b.data = '';
-    return (
-      (typeof a.data.localeCompare === 'function' ? a.data.localeCompare(b.data) : a.data - b.data) *
-      (order === 'asc' ? 1 : -1)
-    );
+    if (!a) { a = { data: '' } } else if (!a.data) { a.data = '' }
+    if (!b) { b = { data: '' } } else if (!b.data) { b.data = '' }
+    let ret;
+
+    try {
+      ret = a.data.localeCompare(b.data);
+    } catch (e) {
+      ret = -b.data.localeCompare(a.data);
+    }
+    return ret * (order === 'asc' ? 1 : -1);
   };
 }
 
